@@ -78,7 +78,7 @@ pre{white-space:pre-wrap;margin:0;padding:14px;font:inherit;font-size:17px;line-
 // 貨品表:[名稱, 平日, 假日, 單位, 週五(沒填就等於平日)]。平日為 null 代表沒有數量,盤點後再詢問。
 const ITEMS=[["青蔥",1,2,"捆"],["玉米筍",10,18,"盒"],["蒜仁",1,2,"包"],["雪白菇",3,3,"包"],["鴻禧菇",3,3,"包"],["海帶結",1,2,"包"],["香竹腸",null,null,"箱"],["竹皮",2,2,"包"],["豆皮",null,null,"包"],["洋蔥",3,5,"斤"],["杏包菇c-3kg",0.5,1,"包"],["香菇",null,null,"包"],["蘭花",null,null,"斤"],["大黃瓜",3,6,"條"],["南瓜",5,8,"斤"],["小辣椒",null,null,"包"],["白蘿蔔",2,4,"斤"],["薑絲",1,2,"包"],["鮮柯",3,6,"斤"],["青江菜",4,10,"斤",6],["俄白菜",null,null,"斤"]].map(([n,p,h,u,f])=>({n,p,h,u,f}));
 const DAYS=[["weekday","平日"],["friday","週五"],["holiday","假日"]];
-const STEP={"白蘿蔔":{weekday:0.5,friday:0.5,holiday:1}}; // 叫貨量進位單位:平日/週五進到 0.5,假日進到整數
+const RULE={"杏包菇c-3kg":{weekday:[0.5,0.5],friday:[0.5,0.5],holiday:[1,1]},"白蘿蔔":{weekday:[1,1],friday:[1,1],holiday:[1,2,2]}}; // 特殊叫貨規則 [進位單位, 最少叫貨量, 最多叫貨量(可省略)],只在有缺口時套用
 const $=s=>document.querySelector(s);
 const fmt=n=>String(Math.round(n*100)/100);
 const g=new Date().getDay();
@@ -119,8 +119,10 @@ extra.forEach(it=>{
 function need(it){
   if(it.inp.value==="")return null;
   const n=Math.max(par(it)-parseFloat(it.inp.value),0);
-  const k=STEP[it.n]&&STEP[it.n][day];
-  return k?Math.ceil(Math.round(n/k*100)/100)*k:n;
+  const r=RULE[it.n]&&RULE[it.n][day];
+  if(!r)return n;
+  const m=Math.round(n*100)/100;
+  return m>0?Math.min(Math.max(Math.ceil(m/r[0])*r[0],r[1]),r[2]||Infinity):0;
 }
 function update(){
   seg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.k===day)));
