@@ -143,7 +143,7 @@ function lines(){
 function build(){
   const l=lines();
   $("#otitle").textContent="叫貨清單("+label()+")";
-  $("#otext").textContent=l.length?l.join("\n"):"這次沒有要叫的貨。";
+  $("#otext").textContent=l.length?l.join("\n")+"\n感謝 🙏":"這次沒有要叫的貨。";
   $("#out").hidden=false;
 }
 $("#done").onclick=()=>{
