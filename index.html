@@ -191,7 +191,7 @@ $("#reset").onclick=()=>{
   update();window.scrollTo({top:0,behavior:"smooth"});
 };
 update();
-if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).catch(()=>{}));
 </script>
 </body>
 </html>
