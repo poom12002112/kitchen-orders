@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#2f6b3f"/>
+  <!-- leaves behind clipboard -->
+  <path d="M300 180 C 290 130 305 98 334 76 C 352 110 344 150 312 182 Z" fill="#6fae7f"/>
+  <path d="M318 186 C 322 138 352 112 392 108 C 392 150 364 178 318 186 Z" fill="#9fd3a8"/>
+  <path d="M326 178 C 345 150 360 132 384 116" stroke="#2f6b3f" stroke-width="6" fill="none" stroke-linecap="round" opacity=".45"/>
+  <!-- clipboard -->
+  <rect x="146" y="140" width="220" height="254" rx="30" fill="#fffdf8"/>
+  <rect x="202" y="114" width="108" height="52" rx="16" fill="#c4422a"/>
+  <rect x="234" y="128" width="44" height="13" rx="6.5" fill="#fffdf8" opacity=".9"/>
+  <!-- rows -->
+  <g stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M180 220 l13 13 l24 -26" stroke="#2f6b3f" stroke-width="14"/>
+    <path d="M180 278 l13 13 l24 -26" stroke="#2f6b3f" stroke-width="14"/>
+    <rect x="182" y="322" width="32" height="32" rx="9" stroke="#d8ccb4" stroke-width="8"/>
+    <path d="M244 222 h88 M244 280 h66 M244 338 h80" stroke="#e6dcc8" stroke-width="16"/>
+  </g>
+</svg>
